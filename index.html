@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Growth Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<meta name="theme-color" content="#3b82f6" />
+
+</head>
+
+<body>
+  <button id="darkModeToggle" class="mode-btn">🌙 Dark Mode</button>
+
+  <div class="container">
+    <h1>🌱 Personal Growth Tracker</h1>
+
+    <div class="input-section">
+      <input type="text" id="goalInput" placeholder="Enter a new goal..." />
+
+      <select id="categorySelect">
+        <option value="Health">Health</option>
+        <option value="Learning">Learning</option>
+        <option value="Mindfulness">Mindfulness</option>
+        <option value="Productivity">Productivity</option>
+      </select>
+
+      <input type="date" id="deadlineInput" />
+
+      <button onclick="addGoal()">Add Goal</button>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <p id="progressText">0% Complete</p>
+
+    <ul id="goalList"></ul>
+
+    <h3>📊 Weekly Completion Chart</h3>
+    <canvas id="goalChart" width="400" height="200"></canvas>
+  </div>
+  
+  <script src="script.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker Registered'));
+  }
+</script>
+
+</body>
+
+<button onclick="exportCSV()" class="mode-btn">📄 Export to CSV</button>
+
+</html>
