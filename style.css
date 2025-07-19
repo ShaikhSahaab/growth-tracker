@@ -125,3 +125,20 @@ canvas {
 .dark-mode .progress-fill {
   background-color: #22c55e;
 }
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #161b22;
+  font-size: 13px;
+  color: #c9d1d9; /* made brighter than #8b949e */
+  letter-spacing: 0.5px;
+  border-top: 1px solid #30363d;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+footer strong {
+  color: #58a6ff;
+  font-weight: 600;
+}
