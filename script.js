@@ -1,5 +1,10 @@
-if ('Notification' in window && Notification.permission !== 'granted') {
-  Notification.requestPermission();
+// Reset notifications daily
+const today = new Date().toISOString().split('T')[0];
+const lastNotifiedDate = localStorage.getItem('lastNotifiedDate');
+
+if (lastNotifiedDate !== today) {
+  localStorage.removeItem('notifiedGoals');
+  localStorage.setItem('lastNotifiedDate', today);
 }
 
 let goals = JSON.parse(localStorage.getItem('goals')) || [];
@@ -52,7 +57,7 @@ function renderGoals() {
         <strong>${goal.text}</strong><br/>
         <small>📂 ${goal.category} | 📅 ${goal.deadline || 'No deadline'}</small>
       </div>
-      <button onclick="toggleGoal(${index})">
+      <button onclick="toggleGoal(${index})" aria-pressed="${goal.completed}">
         ${goal.completed ? 'Undo' : 'Done'}
       </button>
     `;
@@ -61,21 +66,22 @@ function renderGoals() {
 
   updateProgress();
   checkAndNotifyGoals();
-
 }
 
 function checkAndNotifyGoals() {
   if (Notification.permission !== 'granted') return;
 
-  const today = new Date().toISOString().split('T')[0];
+  const notifiedGoals = JSON.parse(localStorage.getItem('notifiedGoals')) || {};
 
   goals.forEach(goal => {
-    if (!goal.completed && goal.deadline === today) {
+    if (!goal.completed && goal.deadline === today && !notifiedGoals[goal.text]) {
       new Notification(`Reminder: ${goal.text} is due today!`);
+      notifiedGoals[goal.text] = true;
     }
   });
-}
 
+  localStorage.setItem('notifiedGoals', JSON.stringify(notifiedGoals));
+}
 
 function updateProgress() {
   const completedCount = goals.filter(goal => goal.completed).length;
@@ -135,6 +141,7 @@ function renderChart() {
 // Initial render
 renderGoals();
 renderChart();
+
 const darkToggle = document.getElementById("darkModeToggle");
 
 darkToggle.addEventListener("click", () => {
@@ -145,6 +152,7 @@ darkToggle.addEventListener("click", () => {
 if (localStorage.getItem("darkMode") === "true") {
   document.body.classList.add("dark-mode");
 }
+
 function exportCSV() {
   const headers = ["Goal", "Category", "Deadline", "Completed"];
   const rows = goals.map(g => [
@@ -154,7 +162,7 @@ function exportCSV() {
     g.completed ? "Yes" : "No"
   ]);
 
-  let csvContent = "data:text/csv;charset=utf-8,"
+  let csvContent = "data:text/csv;charset=utf-8," 
     + [headers, ...rows].map(e => e.join(",")).join("\n");
 
   const encodedUri = encodeURI(csvContent);
