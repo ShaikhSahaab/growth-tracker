@@ -15,6 +15,8 @@
 <body>
   <button id="darkModeToggle" class="mode-btn">🌙 Dark Mode</button>
 
+
+
   <div class="container">
     <h1>🌱 Personal Growth Tracker</h1>
 
@@ -43,9 +45,8 @@
     <h3>📊 Weekly Completion Chart</h3>
     <canvas id="goalChart" width="400" height="200"></canvas>
   </div>
-
- 
-  
+  <button onclick="exportCSV()" class="mode-btn">📄 Export to CSV</button>
+  <br><br><br>
   <script src="script.js"></script>
   <script>
   if ('serviceWorker' in navigator) {
@@ -53,15 +54,14 @@
       .then(() => console.log('Service Worker Registered'));
   }
 </script>
-
-  <button onclick="exportCSV()" class="mode-btn">📄 Export to CSV</button>
-
-
-</body>
-   <!-- Footer -->
+<!-- Footer -->
   <footer>
-    <p>&copy; 2025 <strong>GrowthTracker</strong>. All rights reserved.</p>
+    <p>&copy; 2025 <strong>GrowthTracker</strong> All rights reserved.</p>
   </footer>
 
 
+</body>
+
+
+ 
 </html>
