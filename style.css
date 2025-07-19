@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f4f8;
+  background-color: #383a3d;
   margin: 0;
   padding: 20px;
 }
@@ -129,13 +129,13 @@ canvas {
 /* Footer Styling */
 footer {
   text-align: center;
-  padding: 15px;
-  background-color: #161b22;
+  padding: 6px;
+  background-color: #ffffff;
   font-size: 13px;
-  color: #c9d1d9; /* made brighter than #8b949e */
+  color: #000000; /* made brighter than #8b949e */
   letter-spacing: 0.5px;
-  border-top: 1px solid #30363d;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  
 }
 
 footer strong {
