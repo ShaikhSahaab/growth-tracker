@@ -1,8 +1,10 @@
 {
   "name": "Personal Growth Tracker",
   "short_name": "GrowthTracker",
-  "start_url": "index.html",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#f0f4f8",
   "theme_color": "#3b82f6",
   "icons": [
