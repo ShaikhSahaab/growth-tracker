@@ -2,40 +2,38 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Personal Growth Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="manifest" href="manifest.json" />
-<link rel="shortcut icon" href="android-chrome-512x512.png" type="image/x-icon" />
-<meta name="theme-color" content="#3b82f6" />
-
+  <link rel="shortcut icon" href="android-chrome-512x512.png" type="image/x-icon" />
+  <meta name="theme-color" content="#3b82f6" />
 </head>
 
 <body>
-  <button id="darkModeToggle" class="mode-btn">🌙 Dark Mode</button>
-
-
+  <button id="darkModeToggle" class="mode-btn" aria-label="Toggle dark mode">🌙 Dark Mode</button>
 
   <div class="container">
     <h1>🌱 Personal Growth Tracker</h1>
 
     <div class="input-section">
-      <input type="text" id="goalInput" placeholder="Enter a new goal..." />
+      <input type="text" id="goalInput" placeholder="Enter a new goal..." aria-label="New goal input" />
 
-      <select id="categorySelect">
+      <select id="categorySelect" aria-label="Select goal category">
         <option value="Health">Health</option>
         <option value="Learning">Learning</option>
         <option value="Mindfulness">Mindfulness</option>
         <option value="Productivity">Productivity</option>
       </select>
 
-      <input type="date" id="deadlineInput" />
+      <input type="date" id="deadlineInput" aria-label="Select goal deadline" />
 
-      <button onclick="addGoal()">Add Goal</button>
+      <button onclick="addGoal()" aria-label="Add goal">Add Goal</button>
     </div>
 
-    <div class="progress-bar">
+    <div class="progress-bar" aria-label="Progress bar">
       <div id="progress" class="progress-fill"></div>
     </div>
     <p id="progressText">0% Complete</p>
@@ -43,25 +41,26 @@
     <ul id="goalList"></ul>
 
     <h3>📊 Weekly Completion Chart</h3>
-    <canvas id="goalChart" width="400" height="200"></canvas>
+    <canvas id="goalChart" width="400" height="200" aria-label="Weekly completion chart" role="img"></canvas>
   </div>
-  <button onclick="exportCSV()" class="mode-btn">📄 Export to CSV</button>
-  <br><br><br>
+
+  <button onclick="exportCSV()" class="mode-btn" aria-label="Export goals to CSV">📄 Export to CSV</button>
+
+  <br /><br /><br />
+
   <script src="script.js"></script>
   <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('Service Worker Registered'));
-  }
-</script>
-<!-- Footer -->
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("service-worker.js")
+        .then(() => console.log("Service Worker Registered"));
+    }
+  </script>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 <strong>GrowthTracker</strong> All rights reserved.</p>
   </footer>
-
-
 </body>
 
-
- 
 </html>
